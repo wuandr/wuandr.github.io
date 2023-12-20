@@ -14,10 +14,6 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Deployment
-
-Run `ng deploy` to deploy the project to Github pages.
-
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
@@ -29,3 +25,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Personal Notes
+
+Since Angular 17 uses a new builder, packages such as angular-cli-ghpages no longer work as they do not recognize the new file structure yet. To work around this, I removed the build directory from the gitignore list and used github actions to target the correct directory manually.
