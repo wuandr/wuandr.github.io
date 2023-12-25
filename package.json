@@ -1,0 +1,19 @@
+{
+  "name": "wuandr.git.io",
+  "version": "1.0.0",
+  "description": "Andrew's website",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wuandr/wuandr.github.io.git"
+  },
+  "author": "Andrew Wu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wuandr/wuandr.github.io/issues"
+  },
+  "homepage": "https://github.com/wuandr/wuandr.github.io#readme"
+}
