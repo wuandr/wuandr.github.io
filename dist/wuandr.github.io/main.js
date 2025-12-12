@@ -1,14 +1,14 @@
-const scrollLinks: NodeListOf<HTMLAnchorElement> = document.querySelectorAll('[data-scroll]');
+const scrollLinks = document.querySelectorAll('[data-scroll]');
 
 scrollLinks.forEach((link) => {
-  link.addEventListener('click', (event: MouseEvent) => {
+  link.addEventListener('click', (event) => {
     const target = link.getAttribute('href');
     if (!target || !target.startsWith('#')) {
       return;
     }
 
     event.preventDefault();
-    const destination = document.querySelector<HTMLElement>(target);
+    const destination = document.querySelector(target);
     destination?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
