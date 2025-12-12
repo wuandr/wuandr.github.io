@@ -1,11 +1,11 @@
 # Wuandr Portfolio
 
-Minimal single-page portfolio for a software engineer. Source lives in `src` (HTML, CSS, TypeScript) and builds into `dist/wuandr.github.io` for deployment (e.g., GitHub Pages).
+Minimal single-page portfolio for a software engineer. The structure mirrors the v4 layout (hero, about, tabbed experience, featured work, projects, and a contact CTA) while staying framework-free with only HTML, CSS, and TypeScript.
 
 ## Project layout
-- `src/index.html` – page markup (header, hero, projects, experience, footer)
-- `src/styles.css` – minimalist styling
-- `src/main.ts` – smooth scroll for in-page links + dynamic footer year
+- `src/index.html` – page markup (nav, hero, sections, footer)
+- `src/styles.css` – styling for the v4-inspired layout and components
+- `src/main.ts` – smooth scrolling, active nav state, tab switching, and dynamic footer year
 - `dist/wuandr.github.io/` – build output that gets deployed
 - `scripts/copy-static.js` – copies HTML/CSS into `dist` after build
 - `.github/workflows/static.yml` – Pages deploy workflow (adjust its `path` to match the dist folder)
@@ -23,7 +23,7 @@ npm run build
 Open `dist/wuandr.github.io/index.html` in a browser to view the site, or serve that folder via your hosting.
 
 ## Customization
-- Update profile info, project links, and experience in `src/index.html`.
+- Update profile info, projects, and experience directly in `src/index.html`.
 - Tweak colors/spacing in `src/styles.css`.
 - Add client-side behavior in `src/main.ts` (remember to rebuild).
 
