@@ -4,118 +4,284 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wuandr — Software Engineer</title>
+  <meta name="description" content="Portfolio of Wuandr, a software engineer focused on resilient web systems and developer experience.">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="inner">
-      <div class="brand">Wuandr</div>
-      <nav aria-label="Primary">
-        <ul class="nav-links">
-          <li><a href="https://github.com/your-github" target="_blank" rel="noreferrer">GitHub</a></li>
-          <li><a href="https://www.linkedin.com/in/your-linkedin" target="_blank" rel="noreferrer">LinkedIn</a></li>
-          <li><a href="https://example.com/resume.pdf" target="_blank" rel="noreferrer">Resume</a></li>
-          <li><a href="mailto:you@example.com">Email</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero" id="hero">
+  <div class="surface">
+    <header class="topbar">
       <div class="inner">
-        <p class="eyebrow">Software Engineer</p>
-        <h1>Wuandr — Software Engineer</h1>
-        <p class="summary">
-          Building reliable products with clean, pragmatic code and thoughtful developer experience.
-          I enjoy shipping polished features, refining tooling, and collaborating across disciplines.
-        </p>
-        <div class="actions">
-          <a class="button" href="#projects" data-scroll>Projects</a>
-          <a class="button ghost" href="https://example.com/resume.pdf" target="_blank" rel="noreferrer">Resume</a>
-        </div>
+        <a class="brand" href="#top" data-scroll>Wuandr</a>
+        <nav aria-label="Primary">
+          <ul class="nav-links">
+            <li><a data-nav data-scroll href="#about">About</a></li>
+            <li><a data-nav data-scroll href="#experience">Experience</a></li>
+            <li><a data-nav data-scroll href="#projects">Projects</a></li>
+            <li><a data-nav data-scroll href="#contact">Contact</a></li>
+            <li><a class="nav-cta" href="https://wuandr.github.io/resume.pdf" target="_blank" rel="noreferrer">Resume</a></li>
+          </ul>
+        </nav>
       </div>
-    </section>
+    </header>
 
-    <section class="section" id="projects">
-      <div class="inner">
-        <h2>Projects</h2>
-        <ul class="list">
-          <li>
-            <div class="item-title">Release Radar — deployment insights dashboard</div>
-            <div class="item-meta">TypeScript • D3 • Node • Postgres</div>
-            <div class="item-links">
-              <a href="https://github.com/your-github/release-radar" target="_blank" rel="noreferrer">Repo</a>
-              <span aria-hidden="true">|</span>
-              <a href="https://demo.example.com" target="_blank" rel="noreferrer">Demo</a>
+    <main class="page">
+      <section class="hero section" id="top" data-section>
+        <div class="inner hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Software Engineer / Systems-minded</p>
+            <h1>Hi, I’m Wuandr. I design resilient, human-friendly software.</h1>
+            <p class="lede">
+              I build digital products that feel polished, perform at scale, and keep teams moving fast.
+              I lean on strong fundamentals, clear communication, and a bias for shipping.
+            </p>
+            <div class="hero-meta">
+              <div class="status-pill">Open to impactful product teams</div>
+              <div class="location">Based remotely, collaborating across time zones.</div>
             </div>
-          </li>
-          <li>
-            <div class="item-title">Edge Notes — offline-first notes</div>
-            <div class="item-meta">React • Service Workers • IndexedDB</div>
-            <div class="item-links">
-              <a href="https://github.com/your-github/edge-notes" target="_blank" rel="noreferrer">Repo</a>
+            <div class="actions">
+              <a class="button" data-scroll href="#contact">Let’s talk</a>
+              <a class="button ghost" href="https://wuandr.github.io/resume.pdf" target="_blank" rel="noreferrer">View resume</a>
             </div>
-          </li>
-          <li>
-            <div class="item-title">Signal Queue — task orchestration service</div>
-            <div class="item-meta">Go • gRPC • Redis • Kubernetes</div>
-            <div class="item-links">
-              <a href="https://github.com/your-github/signal-queue" target="_blank" rel="noreferrer">Repo</a>
-              <span aria-hidden="true">|</span>
-              <a href="https://signal-queue.example.com" target="_blank" rel="noreferrer">Demo</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section" id="experience">
-      <div class="inner">
-        <h2>Experience</h2>
-        <div class="experience-list">
-          <article>
-            <header class="experience-header">
-              <div class="role">Northwind Labs — Senior Software Engineer</div>
-              <div class="dates">2021 — Present</div>
-            </header>
-            <ul>
-              <li>Led delivery of a feature-flag platform serving 50+ services with < 200ms p99 latency.</li>
-              <li>Cut deploy lead time by 40% by standardizing CI/CD templates and observability checks.</li>
-              <li>Mentored 4 engineers through promotions by pairing, design reviews, and roadmap planning.</li>
+            <ul class="social">
+              <li><a href="https://github.com/wuandr" target="_blank" rel="noreferrer">GitHub</a></li>
+              <li><a href="https://www.linkedin.com/in/wuandr" target="_blank" rel="noreferrer">LinkedIn</a></li>
+              <li><a href="mailto:hello@wuandr.dev">Email</a></li>
             </ul>
-          </article>
-          <article>
-            <header class="experience-header">
-              <div class="role">Atlas Systems — Software Engineer</div>
-              <div class="dates">2018 — 2021</div>
-            </header>
-            <ul>
-              <li>Built internal tools that reduced support backlog by automating account remediation flows.</li>
-              <li>Reworked API gateway auth, improving throughput 3x while tightening audit coverage.</li>
-              <li>Partnered with design to ship a refreshed dashboard that cut onboarding time by 25%.</li>
-            </ul>
-          </article>
+          </div>
+          <div class="hero-card">
+            <div class="card-header">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <div class="card-body">
+              <p class="card-title">Focus</p>
+              <ul>
+                <li>Product-minded engineering that balances craft and delivery.</li>
+                <li>End-to-end ownership: APIs, frontends, observability, and shipping pipelines.</li>
+                <li>Developer experience: fast feedback loops, reliable tooling, and clear docs.</li>
+              </ul>
+              <p class="card-title">Tooling</p>
+              <div class="chips">
+                <span class="chip">TypeScript</span>
+                <span class="chip">React</span>
+                <span class="chip">Node</span>
+                <span class="chip">Go</span>
+                <span class="chip">PostgreSQL</span>
+                <span class="chip">AWS</span>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
 
-  <footer class="site-footer" id="contact">
-    <div class="inner">
-      <div class="contact">
-        <div class="contact-item">
-          <span class="label">Email</span>
-          <a href="mailto:you@example.com">you@example.com</a>
+      <section class="section" id="about" data-section>
+        <div class="inner">
+          <div class="section-head">
+            <h2>About</h2>
+            <span class="bar" aria-hidden="true"></span>
+          </div>
+          <div class="two-col">
+            <div class="copy">
+              <p>
+                I love designing systems that make complex work feel simple. My work spans product engineering,
+                platform tooling, and the connective tissue that keeps teams shipping with confidence.
+              </p>
+              <p>
+                Recent projects include accelerating CI pipelines, shipping accessible design systems,
+                and building observability-first services. I enjoy pairing with designers, PMs, and operators
+                to turn fuzzy problems into shipped features.
+              </p>
+            </div>
+            <div class="details">
+              <div class="detail-block">
+                <p class="label">Strengths</p>
+                <ul>
+                  <li>Technical writing and design docs that unblock teams.</li>
+                  <li>Architecting APIs and data models with longevity in mind.</li>
+                  <li>Coaching engineers toward intentional, maintainable delivery.</li>
+                </ul>
+              </div>
+              <div class="detail-block">
+                <p class="label">Currently reading</p>
+                <p class="muted">“Designing Data-Intensive Applications” — M. Kleppmann</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="contact-item">
-          <span class="label">Location</span>
-          <span>Remote • PT (UTC−8)</span>
+      </section>
+
+      <section class="section" id="experience" data-section>
+        <div class="inner">
+          <div class="section-head">
+            <h2>Experience</h2>
+            <span class="bar" aria-hidden="true"></span>
+          </div>
+          <div class="timeline">
+            <article class="timeline-item">
+              <header>
+                <div>
+                  <p class="muted">2021 — Present</p>
+                  <h3>Senior Software Engineer · Northwind Labs</h3>
+                </div>
+                <a class="muted" href="https://northwind.example.com" target="_blank" rel="noreferrer">northwind.example.com</a>
+              </header>
+              <ul>
+                <li>Led delivery of a feature-flag platform serving 60+ services with < 200ms p99 latency.</li>
+                <li>Cut deploy lead time by 40% by standardizing CI/CD templates and observability checks.</li>
+                <li>Mentored 4 engineers through promotions via pairing, reviews, and roadmap planning.</li>
+              </ul>
+            </article>
+            <article class="timeline-item">
+              <header>
+                <div>
+                  <p class="muted">2018 — 2021</p>
+                  <h3>Software Engineer · Atlas Systems</h3>
+                </div>
+                <a class="muted" href="https://atlas.example.com" target="_blank" rel="noreferrer">atlas.example.com</a>
+              </header>
+              <ul>
+                <li>Built internal tools that reduced support backlog by automating remediation flows.</li>
+                <li>Reworked API gateway auth, improving throughput 3x while tightening audit coverage.</li>
+                <li>Partnered with design to ship a refreshed dashboard that cut onboarding time by 25%.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="projects" data-section>
+        <div class="inner">
+          <div class="section-head">
+            <h2>Featured projects</h2>
+            <span class="bar" aria-hidden="true"></span>
+          </div>
+          <div class="projects-grid">
+            <article class="project-card">
+              <div class="project-visual gradient-a"></div>
+              <div class="project-body">
+                <p class="muted">Data platform</p>
+                <h3>Release Radar</h3>
+                <p>Deployment insights dashboard that surfaces regressions, lead time, and reliability across services.</p>
+                <div class="chips">
+                  <span class="chip">TypeScript</span>
+                  <span class="chip">D3</span>
+                  <span class="chip">Node</span>
+                  <span class="chip">PostgreSQL</span>
+                </div>
+                <div class="links">
+                  <a href="https://github.com/wuandr/release-radar" target="_blank" rel="noreferrer">GitHub</a>
+                  <a href="https://demo.example.com" target="_blank" rel="noreferrer">Demo</a>
+                </div>
+              </div>
+            </article>
+            <article class="project-card">
+              <div class="project-visual gradient-b"></div>
+              <div class="project-body">
+                <p class="muted">Developer experience</p>
+                <h3>Edge Notes</h3>
+                <p>Offline-first notes with conflict-free sync, built to keep ideas flowing on spotty connections.</p>
+                <div class="chips">
+                  <span class="chip">React</span>
+                  <span class="chip">Service Workers</span>
+                  <span class="chip">IndexedDB</span>
+                </div>
+                <div class="links">
+                  <a href="https://github.com/wuandr/edge-notes" target="_blank" rel="noreferrer">GitHub</a>
+                </div>
+              </div>
+            </article>
+            <article class="project-card">
+              <div class="project-visual gradient-c"></div>
+              <div class="project-body">
+                <p class="muted">Platform</p>
+                <h3>Signal Queue</h3>
+                <p>Task orchestration service with typed workflows, distributed tracing, and predictable retries.</p>
+                <div class="chips">
+                  <span class="chip">Go</span>
+                  <span class="chip">gRPC</span>
+                  <span class="chip">Redis</span>
+                  <span class="chip">Kubernetes</span>
+                </div>
+                <div class="links">
+                  <a href="https://github.com/wuandr/signal-queue" target="_blank" rel="noreferrer">GitHub</a>
+                  <a href="https://signal-queue.example.com" target="_blank" rel="noreferrer">Demo</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="section-head small-gap">
+            <h2>Other work</h2>
+            <span class="bar" aria-hidden="true"></span>
+          </div>
+          <ul class="other-projects">
+            <li>
+              <div>
+                <p class="muted">2024</p>
+                <h3>Pulsewatch</h3>
+                <p>Lightweight incident command app that keeps responders aligned during on-call rotations.</p>
+              </div>
+              <div class="links">
+                <a href="https://github.com/wuandr/pulsewatch" target="_blank" rel="noreferrer">GitHub</a>
+              </div>
+            </li>
+            <li>
+              <div>
+                <p class="muted">2023</p>
+                <h3>Spec Scout</h3>
+                <p>Automated API contract checks wired into CI for safer cross-team deployments.</p>
+              </div>
+              <div class="links">
+                <a href="https://github.com/wuandr/spec-scout" target="_blank" rel="noreferrer">GitHub</a>
+              </div>
+            </li>
+            <li>
+              <div>
+                <p class="muted">2022</p>
+                <h3>Ledgerline</h3>
+                <p>Personal finance dashboards with rule-based imports and reconciled cashflow trends.</p>
+              </div>
+              <div class="links">
+                <a href="https://github.com/wuandr/ledgerline" target="_blank" rel="noreferrer">GitHub</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section contact" id="contact" data-section>
+        <div class="inner contact-card">
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h2>Let’s collaborate</h2>
+            <p class="lede">
+              I’m looking for teams shipping thoughtful products and the tooling that powers them.
+              Tell me about the problems you’re solving.
+            </p>
+          </div>
+          <div class="contact-actions">
+            <a class="button" href="mailto:hello@wuandr.dev">Email me</a>
+            <a class="button ghost" href="https://wuandr.github.io/resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="inner footer-inner">
+        <div>
+          <p class="muted">© <span id="year"></span> Wuandr</p>
+          <p class="muted">Building thoughtful products, one stable release at a time.</p>
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com/wuandr" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/wuandr" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href="mailto:hello@wuandr.dev">Email</a>
         </div>
       </div>
-      <div class="footer-note">© <span id="year"></span> Wuandr</div>
-    </div>
-  </footer>
+    </footer>
+  </div>
 
   <script src="./main.js" type="module" defer></script>
 </body>
