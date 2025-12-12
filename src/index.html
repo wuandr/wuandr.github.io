@@ -1,66 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wuandr — Software Engineer</title>
-  <meta name="description" content="Portfolio of Wuandr, a software engineer focused on resilient web systems and developer experience.">
-  <link rel="stylesheet" href="./styles.css">
+  <meta name="description" content="Portfolio of Wuandr, a software engineer focused on resilient web systems and developer experience." />
+  <meta name="theme-color" content="#0a192f" />
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <a class="skip-link" href="#content">Skip to main content</a>
+  <a class="skip-link" href="#main">Skip to main content</a>
 
-  <header class="site-header" id="top">
-    <div class="nav-inner">
-      <a class="brand" href="#top" data-scroll aria-label="Wuandr home">Wuandr</a>
-      <nav aria-label="Primary">
-        <ul class="nav-links">
-          <li><a data-nav data-scroll href="#about"><span class="nav-index">01.</span>About</a></li>
-          <li><a data-nav data-scroll href="#experience"><span class="nav-index">02.</span>Experience</a></li>
-          <li><a data-nav data-scroll href="#featured"><span class="nav-index">03.</span>Featured</a></li>
-          <li><a data-nav data-scroll href="#projects"><span class="nav-index">04.</span>Projects</a></li>
-          <li><a data-nav data-scroll href="#contact"><span class="nav-index">05.</span>Contact</a></li>
-          <li><a class="nav-resume" href="https://wuandr.github.io/resume.pdf" target="_blank" rel="noreferrer">Resume</a></li>
+  <div class="layout" id="top">
+    <aside class="sidebar" aria-label="Site sidebar">
+      <div class="sidebar-inner">
+        <div class="identity">
+          <a class="name" href="#top" data-scroll>Wuandr</a>
+          <p class="role">Software Engineer</p>
+          <p class="tagline">I build accessible, polished software with reliable systems and fast feedback loops.</p>
+        </div>
+
+        <nav class="side-nav" aria-label="Primary">
+          <ul class="side-nav-list">
+            <li><a data-nav data-scroll href="#about">About</a></li>
+            <li><a data-nav data-scroll href="#experience">Experience</a></li>
+            <li><a data-nav data-scroll href="#projects">Projects</a></li>
+            <li><a data-nav data-scroll href="#writing">Writing</a></li>
+          </ul>
+        </nav>
+
+        <ul class="social" aria-label="Social links">
+          <li><a href="https://github.com/wuandr" target="_blank" rel="noreferrer">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/wuandr" target="_blank" rel="noreferrer">LinkedIn</a></li>
+          <li><a href="mailto:hello@wuandr.dev">Email</a></li>
+          <li><a class="resume" href="https://wuandr.github.io/resume.pdf" target="_blank" rel="noreferrer">Résumé</a></li>
         </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main id="content" class="content">
-    <section class="hero" id="hero">
-      <p class="subtitle">Hi, my name is</p>
-      <h1 class="hero-title">Wuandr.</h1>
-      <h2 class="hero-subtitle">I build resilient, human-friendly software.</h2>
-      <p class="hero-lede">
-        I ship digital products that feel polished, perform at scale, and keep teams moving fast.
-        My default mode blends thoughtful design, reliable systems, and tight feedback loops.
-      </p>
-      <div class="hero-actions">
-        <a class="button" href="mailto:hello@wuandr.dev">Email me</a>
-        <a class="button ghost" href="https://wuandr.github.io/resume.pdf" target="_blank" rel="noreferrer">View resume</a>
       </div>
-      <ul class="hero-social">
-        <li><a href="https://github.com/wuandr" target="_blank" rel="noreferrer">GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/wuandr" target="_blank" rel="noreferrer">LinkedIn</a></li>
-        <li><a href="mailto:hello@wuandr.dev">Email</a></li>
-      </ul>
-    </section>
+    </aside>
 
-    <section class="section about" id="about" data-section>
-      <h2 class="numbered-heading">About me</h2>
-      <div class="about-grid">
-        <div class="about-copy">
+    <main id="main" class="content" aria-label="Main content">
+      <section class="section" id="about" data-section>
+        <h2 class="section-title">About</h2>
+        <div class="prose">
           <p>
-            I love designing systems that make complex work feel simple. My work spans product engineering,
-            platform tooling, and the connective tissue that keeps teams shipping with confidence.
+            I’m a software engineer who enjoys designing systems that make complex work feel simple—especially
+            when it improves reliability, performance, and developer experience.
           </p>
           <p>
-            Recent projects include accelerating CI pipelines, shipping accessible design systems,
-            and building observability-first services. I enjoy pairing with designers, PMs, and operators
-            to turn fuzzy problems into shipped features.
+            Recently, I’ve been focused on building resilient APIs, tightening CI feedback loops, and shipping
+            clean UI with accessibility and performance as defaults.
           </p>
-          <p class="muted">Here are a few tools I reach for often:</p>
-          <ul class="skills-list">
+        </div>
+
+        <div class="pill-block" aria-label="Tools I use">
+          <p class="eyebrow">Tools I reach for often</p>
+          <ul class="pills">
             <li>TypeScript</li>
             <li>React</li>
             <li>Node</li>
@@ -69,176 +63,164 @@
             <li>AWS</li>
           </ul>
         </div>
-        <div class="about-visual" aria-hidden="true">
-          <div class="frame">
-            <div class="accent-block"></div>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section experience" id="experience" data-section>
-      <h2 class="numbered-heading">Where I’ve worked</h2>
-      <div class="experience-inner">
-        <div class="tab-list" role="tablist" aria-label="Work history">
-          <button class="tab-button active" role="tab" aria-selected="true" aria-controls="panel-northwind" id="tab-northwind" data-tab-target="panel-northwind">Northwind Labs</button>
-          <button class="tab-button" role="tab" aria-selected="false" aria-controls="panel-atlas" id="tab-atlas" data-tab-target="panel-atlas">Atlas Systems</button>
-        </div>
-        <div class="tab-panels">
-          <article class="tab-panel active" id="panel-northwind" role="tabpanel" aria-labelledby="tab-northwind" data-tab-panel>
-            <div class="panel-header">
-              <h3>Senior Software Engineer <span class="company">@ Northwind Labs</span></h3>
+      <section class="section" id="experience" data-section>
+        <h2 class="section-title">Experience</h2>
+
+        <ol class="stack">
+          <li class="card">
+            <div class="card-meta">
               <p class="range">2021 — Present</p>
             </div>
-            <ul>
-              <li>Led delivery of a feature-flag platform serving 60+ services with sub-200ms p99 latency.</li>
-              <li>Cut deploy lead time by 40% by standardizing CI/CD templates and observability checks.</li>
-              <li>Mentored engineers through promotions via pairing, reviews, and roadmap planning.</li>
-            </ul>
-          </article>
+            <div class="card-body">
+              <h3 class="card-title">
+                Senior Software Engineer · <a href="#" aria-label="Northwind Labs">Northwind Labs</a>
+              </h3>
+              <p class="card-summary">
+                Platform and product work across service reliability, CI/CD, and internal tooling.
+              </p>
+              <ul class="bullets">
+                <li>Led delivery of a feature-flag platform serving 60+ services with sub-200ms p99 latency.</li>
+                <li>Cut deploy lead time by 40% by standardizing CI/CD templates and observability checks.</li>
+                <li>Mentored engineers through promotions via pairing, reviews, and roadmap planning.</li>
+              </ul>
+              <ul class="tags" aria-label="Technologies">
+                <li>TypeScript</li>
+                <li>Node</li>
+                <li>PostgreSQL</li>
+                <li>AWS</li>
+              </ul>
+            </div>
+          </li>
 
-          <article class="tab-panel" id="panel-atlas" role="tabpanel" aria-labelledby="tab-atlas" data-tab-panel hidden>
-            <div class="panel-header">
-              <h3>Software Engineer <span class="company">@ Atlas Systems</span></h3>
+          <li class="card">
+            <div class="card-meta">
               <p class="range">2018 — 2021</p>
             </div>
-            <ul>
-              <li>Built internal tools that reduced support backlog by automating remediation flows.</li>
-              <li>Reworked API gateway auth, improving throughput 3x while tightening audit coverage.</li>
-              <li>Partnered with design to ship a refreshed dashboard that cut onboarding time by 25%.</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section featured" id="featured" data-section>
-      <h2 class="numbered-heading">Featured work</h2>
-      <div class="featured-list">
-        <article class="featured-item">
-          <div class="featured-visual gradient-a" aria-hidden="true"></div>
-          <div class="featured-content">
-            <p class="overline">Data platform</p>
-            <h3>Release Radar</h3>
-            <p>Deployment insights dashboard that surfaces regressions, lead time, and reliability across services.</p>
-            <ul class="tech-list">
-              <li>TypeScript</li>
-              <li>D3</li>
-              <li>Node</li>
-              <li>PostgreSQL</li>
-            </ul>
-            <div class="links">
-              <a href="https://github.com/wuandr/release-radar" target="_blank" rel="noreferrer">GitHub</a>
-              <a href="https://demo.example.com" target="_blank" rel="noreferrer">Demo</a>
+            <div class="card-body">
+              <h3 class="card-title">
+                Software Engineer · <a href="#" aria-label="Atlas Systems">Atlas Systems</a>
+              </h3>
+              <p class="card-summary">
+                Backend engineering and UI delivery for customer-facing dashboards.
+              </p>
+              <ul class="bullets">
+                <li>Built internal tools that reduced support backlog by automating remediation flows.</li>
+                <li>Reworked API gateway auth, improving throughput 3x while tightening audit coverage.</li>
+                <li>Partnered with design to ship a refreshed dashboard that cut onboarding time by 25%.</li>
+              </ul>
+              <ul class="tags" aria-label="Technologies">
+                <li>Go</li>
+                <li>REST</li>
+                <li>CI/CD</li>
+                <li>Observability</li>
+              </ul>
             </div>
-          </div>
-        </article>
+          </li>
+        </ol>
 
-        <article class="featured-item reverse">
-          <div class="featured-visual gradient-b" aria-hidden="true"></div>
-          <div class="featured-content">
-            <p class="overline">Developer experience</p>
-            <h3>Edge Notes</h3>
-            <p>Offline-first notes with conflict-free sync, built to keep ideas flowing on spotty connections.</p>
-            <ul class="tech-list">
-              <li>React</li>
-              <li>Service Workers</li>
-              <li>IndexedDB</li>
-            </ul>
-            <div class="links">
-              <a href="https://github.com/wuandr/edge-notes" target="_blank" rel="noreferrer">GitHub</a>
+        <p class="inline-cta">
+          <a class="link" href="https://wuandr.github.io/resume.pdf" target="_blank" rel="noreferrer">View Full Résumé</a>
+        </p>
+      </section>
+
+      <section class="section" id="projects" data-section>
+        <h2 class="section-title">Projects</h2>
+
+        <ol class="stack">
+          <li class="card">
+            <div class="card-meta">
+              <p class="range">2024</p>
             </div>
-          </div>
-        </article>
-
-        <article class="featured-item">
-          <div class="featured-visual gradient-c" aria-hidden="true"></div>
-          <div class="featured-content">
-            <p class="overline">Platform</p>
-            <h3>Signal Queue</h3>
-            <p>Task orchestration service with typed workflows, distributed tracing, and predictable retries.</p>
-            <ul class="tech-list">
-              <li>Go</li>
-              <li>gRPC</li>
-              <li>Redis</li>
-              <li>Kubernetes</li>
-            </ul>
-            <div class="links">
-              <a href="https://github.com/wuandr/signal-queue" target="_blank" rel="noreferrer">GitHub</a>
-              <a href="https://signal-queue.example.com" target="_blank" rel="noreferrer">Demo</a>
+            <div class="card-body">
+              <h3 class="card-title">
+                <a href="https://github.com/wuandr/release-radar" target="_blank" rel="noreferrer">Release Radar</a>
+              </h3>
+              <p class="card-summary">Deployment insights dashboard that surfaces regressions, lead time, and reliability across services.</p>
+              <ul class="tags" aria-label="Technologies">
+                <li>TypeScript</li>
+                <li>Node</li>
+                <li>PostgreSQL</li>
+                <li>D3</li>
+              </ul>
             </div>
-          </div>
-        </article>
-      </div>
-    </section>
+          </li>
 
-    <section class="section projects" id="projects" data-section>
-      <h2 class="numbered-heading">Other projects</h2>
-      <div class="project-grid">
-        <article class="project-card">
-          <p class="muted">2024</p>
-          <h3>Pulsewatch</h3>
-          <p>Lightweight incident command app that keeps responders aligned during on-call rotations.</p>
-          <ul class="tech-list small">
-            <li>TypeScript</li>
-            <li>React</li>
-          </ul>
-          <div class="links">
-            <a href="https://github.com/wuandr/pulsewatch" target="_blank" rel="noreferrer">GitHub</a>
-          </div>
-        </article>
+          <li class="card">
+            <div class="card-meta">
+              <p class="range">2024</p>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">
+                <a href="https://github.com/wuandr/edge-notes" target="_blank" rel="noreferrer">Edge Notes</a>
+              </h3>
+              <p class="card-summary">Offline-first notes with conflict-free sync, built to keep ideas flowing on spotty connections.</p>
+              <ul class="tags" aria-label="Technologies">
+                <li>Service Workers</li>
+                <li>IndexedDB</li>
+                <li>React</li>
+              </ul>
+            </div>
+          </li>
 
-        <article class="project-card">
-          <p class="muted">2023</p>
-          <h3>Spec Scout</h3>
-          <p>Automated API contract checks wired into CI for safer cross-team deployments.</p>
-          <ul class="tech-list small">
-            <li>Node</li>
-            <li>OpenAPI</li>
-          </ul>
-          <div class="links">
-            <a href="https://github.com/wuandr/spec-scout" target="_blank" rel="noreferrer">GitHub</a>
-          </div>
-        </article>
+          <li class="card">
+            <div class="card-meta">
+              <p class="range">2023</p>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">
+                <a href="https://github.com/wuandr/signal-queue" target="_blank" rel="noreferrer">Signal Queue</a>
+              </h3>
+              <p class="card-summary">Task orchestration with typed workflows, distributed tracing, and predictable retries.</p>
+              <ul class="tags" aria-label="Technologies">
+                <li>Go</li>
+                <li>gRPC</li>
+                <li>Redis</li>
+                <li>Kubernetes</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
 
-        <article class="project-card">
-          <p class="muted">2022</p>
-          <h3>Ledgerline</h3>
-          <p>Personal finance dashboards with rule-based imports and reconciled cashflow trends.</p>
-          <ul class="tech-list small">
-            <li>TypeScript</li>
-            <li>D3</li>
-          </ul>
-          <div class="links">
-            <a href="https://github.com/wuandr/ledgerline" target="_blank" rel="noreferrer">GitHub</a>
-          </div>
-        </article>
-      </div>
-    </section>
+        <p class="inline-cta">
+          <a class="link" href="#" aria-label="Project archive">View Full Project Archive</a>
+        </p>
+      </section>
 
-    <section class="section contact" id="contact" data-section>
-      <h2 class="numbered-heading">What’s next?</h2>
-      <p class="contact-lede">
-        I’m looking for teams shipping thoughtful products and the tooling that powers them.
-        Tell me about the problems you’re solving.
-      </p>
-      <div class="contact-actions">
-        <a class="button" href="mailto:hello@wuandr.dev">Email me</a>
-        <a class="button ghost" href="https://wuandr.github.io/resume.pdf" target="_blank" rel="noreferrer">Resume</a>
-      </div>
-    </section>
-  </main>
+      <section class="section" id="writing" data-section>
+        <h2 class="section-title">Writing</h2>
 
-  <footer class="footer">
-    <div class="footer-inner">
-      <p class="muted">© <span id="year"></span> Wuandr. Shipping thoughtful software.</p>
-      <div class="footer-links">
-        <a href="https://github.com/wuandr" target="_blank" rel="noreferrer">GitHub</a>
-        <a href="https://www.linkedin.com/in/wuandr" target="_blank" rel="noreferrer">LinkedIn</a>
-        <a href="mailto:hello@wuandr.dev">Email</a>
-      </div>
-    </div>
-  </footer>
+        <ol class="stack">
+          <li class="card compact">
+            <div class="card-meta">
+              <p class="range">2025</p>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title"><a class="link" href="#" aria-label="Post link">Building reliable developer workflows</a></h3>
+              <p class="card-summary">A short write-up on feedback loops, CI ergonomics, and shipping with confidence.</p>
+            </div>
+          </li>
+
+          <li class="card compact">
+            <div class="card-meta">
+              <p class="range">2024</p>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title"><a class="link" href="#" aria-label="Post link">Practical accessibility checks</a></h3>
+              <p class="card-summary">A checklist-style guide for catching common a11y issues early.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <footer class="site-footer">
+        <p class="footer-line">
+          © <span id="year"></span> Wuandr · Built with HTML, CSS, and TypeScript · Deployed on GitHub Pages
+        </p>
+      </footer>
+    </main>
+  </div>
 
   <script src="./main.js" type="module" defer></script>
 </body>
