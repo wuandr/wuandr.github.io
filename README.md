@@ -6,6 +6,8 @@ Minimal single-page portfolio for a software engineer. The structure mirrors the
 - `src/index.html` – page markup (nav, hero, sections, footer)
 - `src/styles.css` – styling for the v4-inspired layout and components
 - `src/main.ts` – smooth scrolling, active nav state, tab switching, and dynamic footer year
+- `src/posts/` – standalone writing pages
+- `src/assets/` – static downloads (e.g. résumé PDF)
 - `dist/wuandr.github.io/` – build output that gets deployed
 - `scripts/copy-static.js` – copies HTML/CSS into `dist` after build
 - `.github/workflows/static.yml` – Pages deploy workflow (adjust its `path` to match the dist folder)
@@ -18,7 +20,7 @@ Minimal single-page portfolio for a software engineer. The structure mirrors the
 npm install
 npm run build
 ```
-`npm run build` runs `tsc` to emit `dist/wuandr.github.io/main.js` and copies `src/index.html` and `src/styles.css` into `dist/wuandr.github.io/`.
+`npm run build` runs `tsc` to emit `dist/wuandr.github.io/main.js` and copies HTML/CSS plus `src/posts` and `src/assets` (including the résumé) into `dist/wuandr.github.io/`.
 
 Open `dist/wuandr.github.io/index.html` in a browser to view the site, or serve that folder via your hosting.
 

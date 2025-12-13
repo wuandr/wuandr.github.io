@@ -426,6 +426,51 @@ section > p {
   transform: scale(1.03);
 }
 
+/* Post layout */
+.post-page {
+  padding: var(--space-5);
+}
+
+.post-shell {
+  max-width: 840px;
+  margin: 0 auto;
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+.post-header {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.post-header h1 {
+  margin: 0;
+}
+
+.post-meta {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--fs-small);
+}
+
+.post-body {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.post-body h2 {
+  margin: var(--space-2) 0 var(--space-1);
+}
+
+.post-body p {
+  margin: 0;
+}
+
 .skip-link {
   position: absolute;
   left: 50%;
@@ -456,6 +501,14 @@ footer {
   }
 
   .card {
+    padding: var(--space-3);
+  }
+
+  .post-page {
+    padding: var(--space-4) var(--space-3);
+  }
+
+  .post-shell {
     padding: var(--space-3);
   }
 
