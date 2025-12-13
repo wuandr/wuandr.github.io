@@ -1,3 +1,5 @@
+// Build script for the static site. Cleans old artifacts, copies assets, renders
+// markdown posts to HTML, and emits JSON manifests for posts and projects.
 const fs = require('fs');
 const path = require('path');
 
@@ -70,8 +72,6 @@ const escapeAttribute = (value) =>
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
 
-const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
 const parseDateInput = (value) => {
   if (value instanceof Date) {
     return Number.isNaN(value.getTime()) ? null : value;
@@ -86,22 +86,9 @@ const parseDateInput = (value) => {
   return Number.isNaN(parsed.getTime()) ? null : parsed;
 };
 
-const formatDateParts = (isoDate) => {
-  if (typeof isoDate !== 'string') return '';
-  const [year, month, day] = isoDate.split('-').map(Number);
-  if (!year || !month || !day) return '';
-  const monthName = monthNames[month - 1];
-  return `${monthName} ${day}, ${year}`;
-};
-
 const formatDisplayDate = (value) => {
-  if (!value) return 'TBD';
-  if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value.trim())) {
-    const friendly = formatDateParts(value.trim());
-    if (friendly) return friendly;
-  }
   const parsed = parseDateInput(value);
-  if (!parsed) return value;
+  if (!parsed) return value || 'TBD';
   return parsed.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 };
 
@@ -144,6 +131,8 @@ const formatInline = (text) =>
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/\*(.+?)\*/g, '<em>$1</em>');
 
+// Tiny markdown renderer that supports headings, paragraphs, lists, and
+// minimal inline formatting. Good enough for the blog posts in this repo.
 const markdownToHtml = (markdown) => {
   const lines = markdown.split('\n');
   const html = [];
@@ -246,6 +235,7 @@ ${contentHtml}
 </html>`;
 };
 
+// Build HTML pages for every markdown post and return a manifest for the archive.
 const buildPostPages = () => {
   if (!fs.existsSync(postsContentDir)) return [];
 
@@ -305,6 +295,7 @@ const buildPostPages = () => {
   });
 };
 
+// Read projects.json and normalize fields for the archive manifest.
 const buildProjectRows = () => {
   const projects = readJsonArray(projectsDataPath);
 
@@ -346,6 +337,7 @@ const buildProjectRows = () => {
     });
 };
 
+// Copy static assets that do not require any processing.
 ['index.html', 'styles.css'].forEach((file) => {
   copyFile(path.join(srcDir, file), path.join(distDir, file));
 });
@@ -357,6 +349,7 @@ copyFile(
 );
 copyDir(path.join(srcDir, 'assets'), path.join(distDir, 'assets'));
 
+// Keep dist clean so removed posts or old artifacts do not linger between builds.
 const cleanPostOutput = () => {
   if (!fs.existsSync(postsOutputDir)) return;
   fs.readdirSync(postsOutputDir).forEach((file) => {
@@ -367,19 +360,23 @@ const cleanPostOutput = () => {
 };
 
 const pruneDistArtifacts = () => {
-  removeIfExists(path.join(distDir, 'posts', 'content'));
-  removeIfExists(path.join(distDir, 'resume.pdf'));
-  removeIfExists(path.join(distDir, 'posts', 'index.html'));
-  removeIfExists(path.join(distDir, 'posts', 'index.js'));
-  removeIfExists(path.join(distDir, 'posts', 'archive.html'));
-  removeIfExists(path.join(distDir, 'posts', 'archive.js'));
-  removeIfExists(path.join(distDir, 'projects', 'index.html'));
-  removeIfExists(path.join(distDir, 'projects', 'index.js'));
-  removeIfExists(path.join(distDir, 'projects', 'archive.html'));
-  removeIfExists(path.join(distDir, 'projects', 'archive.js'));
+  [
+    path.join(distDir, 'posts', 'content'),
+    path.join(distDir, 'resume.pdf'),
+    path.join(distDir, 'posts', 'index.html'),
+    path.join(distDir, 'posts', 'index.js'),
+    path.join(distDir, 'posts', 'archive.html'),
+    path.join(distDir, 'posts', 'archive.js'),
+    path.join(distDir, 'projects', 'index.html'),
+    path.join(distDir, 'projects', 'index.js'),
+    path.join(distDir, 'projects', 'archive.html'),
+    path.join(distDir, 'projects', 'archive.js'),
+  ].forEach(removeIfExists);
+
   removeFilesByExtension(distDir, new Set(['.ts', '.md']));
 };
 
+// Build flow: clean, render posts/projects, then emit manifests.
 pruneDistArtifacts();
 cleanPostOutput();
 const postManifest = buildPostPages();

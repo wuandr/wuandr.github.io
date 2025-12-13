@@ -1,3 +1,4 @@
+// Simple static file server for the built site. No routing or SSR needed.
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
@@ -12,6 +13,7 @@ if (!fs.existsSync(distDir)) {
   process.exit(1);
 }
 
+// Minimal set of mime types for assets in this repo.
 const mimeTypes = {
   html: 'text/html; charset=utf-8',
   js: 'text/javascript; charset=utf-8',
@@ -32,25 +34,36 @@ const sendNotFound = (res) => {
   res.end('Not found');
 };
 
+// Resolve a request path to a safe file inside dist, preferring index.html for directories.
+const resolveFilePath = (requestPath) => {
+  const decodedPath = decodeURIComponent(requestPath || '/');
+  const safePath = path.normalize(decodedPath).replace(/^(\.\.[/\\])+/, '');
+  const candidate = path.join(distDir, safePath);
+
+  if (!candidate.startsWith(distDir)) return { forbidden: true }; // block path traversal
+
+  try {
+    const stats = fs.statSync(candidate);
+    return { filePath: stats.isDirectory() ? path.join(candidate, 'index.html') : candidate };
+  } catch {
+    const nestedIndex = path.join(distDir, safePath, 'index.html');
+    return { filePath: fs.existsSync(nestedIndex) ? nestedIndex : null };
+  }
+};
+
 const server = http.createServer((req, res) => {
   const parsed = url.parse(req.url || '/');
-  const decodedPath = decodeURIComponent(parsed.pathname || '/');
-  const safePath = path.normalize(decodedPath).replace(/^(\.\.[/\\])+/, '');
+  const { filePath, forbidden } = resolveFilePath(parsed.pathname || '/');
 
-  let filePath = path.join(distDir, safePath);
-  if (!filePath.startsWith(distDir)) {
+  if (forbidden) {
     res.writeHead(403, { 'Content-Type': 'text/plain; charset=utf-8' });
     res.end('Forbidden');
     return;
   }
 
-  if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
-    filePath = path.join(filePath, 'index.html');
-  } else if (!fs.existsSync(filePath)) {
-    const nestedIndex = path.join(distDir, safePath, 'index.html');
-    if (fs.existsSync(nestedIndex)) {
-      filePath = nestedIndex;
-    }
+  if (!filePath) {
+    sendNotFound(res);
+    return;
   }
 
   if (!fs.existsSync(filePath)) {
