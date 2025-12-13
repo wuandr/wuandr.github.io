@@ -1,69 +1,77 @@
 "use strict";
-const scrollLinks = document.querySelectorAll('[data-scroll]');
-const navLinks = Array.from(document.querySelectorAll('[data-nav]'));
-const sections = Array.from(document.querySelectorAll('[data-section]'));
-const tabButtons = Array.from(document.querySelectorAll('[data-tab-target]'));
-const tabPanels = Array.from(document.querySelectorAll('[data-tab-panel]'));
-scrollLinks.forEach((link) => {
-    link.addEventListener('click', (event) => {
-        const target = link.getAttribute('href');
-        if (!target || !target.startsWith('#'))
-            return;
-        event.preventDefault();
-        const destination = document.querySelector(target);
-        destination?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-});
-if (sections.length && navLinks.length) {
-    const setActive = (id) => {
-        navLinks.forEach((link) => {
-            const href = link.getAttribute('href');
-            const matches = href?.startsWith('#') && href.slice(1) === id;
-            link.classList.toggle('active', Boolean(matches));
-        });
-    };
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                setActive(entry.target.id);
-            }
-        });
-    }, {
-        threshold: 0.45,
-        rootMargin: '-30% 0px -40% 0px',
-    });
-    sections.forEach((section) => observer.observe(section));
-}
-const setActiveTab = (targetId) => {
-    if (!targetId)
-        return;
-    tabButtons.forEach((button) => {
-        const isMatch = button.dataset.tabTarget === targetId;
-        button.classList.toggle('active', isMatch);
-        button.setAttribute('aria-selected', String(isMatch));
-        button.tabIndex = isMatch ? 0 : -1;
-    });
-    tabPanels.forEach((panel) => {
-        const isMatch = panel.id === targetId;
-        panel.classList.toggle('active', isMatch);
-        panel.toggleAttribute('hidden', !isMatch);
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const selectNavLinks = () => {
+    const entries = Array.from(document.querySelectorAll('[data-section]')).map((link) => [
+        link.dataset.section,
+        link,
+    ]);
+    return new Map(entries);
+};
+const setActiveNav = (links, activeId) => {
+    links.forEach((link, id) => {
+        const isActive = id === activeId;
+        link.dataset.active = String(isActive);
+        if (isActive) {
+            link.setAttribute('aria-current', 'page');
+        }
+        else {
+            link.removeAttribute('aria-current');
+        }
     });
 };
-if (tabButtons.length && tabPanels.length) {
-    tabButtons.forEach((button) => {
-        button.addEventListener('click', () => setActiveTab(button.dataset.tabTarget ?? null));
-        button.addEventListener('keydown', (event) => {
-            if (event.key !== 'Enter' && event.key !== ' ')
+const setupScrollSpy = () => {
+    const navLinks = selectNavLinks();
+    const sections = Array.from(navLinks.keys())
+        .map((id) => document.getElementById(id))
+        .filter((section) => Boolean(section));
+    if (!sections.length || !('IntersectionObserver' in window)) {
+        return;
+    }
+    let current = null;
+    const observer = new IntersectionObserver((entries) => {
+        const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        const topEntry = visible[0];
+        if (!topEntry?.target.id)
+            return;
+        const next = topEntry.target.id;
+        if (next !== current) {
+            current = next;
+            setActiveNav(navLinks, current);
+        }
+    }, {
+        rootMargin: '-40% 0px -40% 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+    });
+    sections.forEach((section) => observer.observe(section));
+};
+const setupNavClicks = () => {
+    const navLinks = selectNavLinks();
+    navLinks.forEach((link) => {
+        link.addEventListener('click', (event) => {
+            const targetId = link.getAttribute('href')?.replace('#', '');
+            if (!targetId)
                 return;
+            const target = document.getElementById(targetId);
+            if (!target)
+                return;
+            if (prefersReducedMotion) {
+                return;
+            }
+            const supportsSmoothScroll = 'scrollBehavior' in document.documentElement.style;
+            if (!supportsSmoothScroll) {
+                return;
+            }
             event.preventDefault();
-            setActiveTab(button.dataset.tabTarget ?? null);
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            link.focus({ preventScroll: true });
         });
     });
-    const initiallyActive = tabButtons.find((button) => button.classList.contains('active'))?.dataset
-        .tabTarget;
-    setActiveTab(initiallyActive ?? tabButtons[0]?.dataset.tabTarget ?? null);
-}
-const yearElement = document.getElementById('year');
-if (yearElement) {
-    yearElement.textContent = String(new Date().getFullYear());
-}
+};
+const init = () => {
+    setActiveNav(selectNavLinks(), 'about');
+    setupScrollSpy();
+    setupNavClicks();
+};
+window.addEventListener('DOMContentLoaded', init);
