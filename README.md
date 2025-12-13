@@ -19,7 +19,7 @@ Framework-free, single-page portfolio with TypeScript for light behavior, static
 
 ## Install & build
 ```bash
-npm install
+npm ci
 npm run build
 ```
 `npm run build` compiles `src/main.ts` to `dist/wuandr.github.io/main.js`, copies HTML/CSS/assets and posts, and generates `posts/projects.json` via `scripts/build.js`.
