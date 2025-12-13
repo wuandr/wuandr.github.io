@@ -26,6 +26,7 @@ const copyDir = (from, to) => {
 });
 
 copyDir(path.join(srcDir, 'posts'), path.join(distDir, 'posts'));
+copyDir(path.join(srcDir, 'projects'), path.join(distDir, 'projects'));
 copyDir(path.join(srcDir, 'assets'), path.join(distDir, 'assets'));
 
 const resumeSrc = path.join(srcDir, 'assets', 'Andrew_Wu_resume_20251126.pdf');

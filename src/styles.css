@@ -471,6 +471,22 @@ section > p {
   margin: 0;
 }
 
+.archive-shell {
+  gap: var(--space-4);
+}
+
+.archive-grid .card {
+  height: 100%;
+}
+
+.archive-list .post-meta {
+  margin: 0;
+}
+
+.archive-list h3 {
+  margin: 0 0 var(--space-1);
+}
+
 .skip-link {
   position: absolute;
   left: 50%;
