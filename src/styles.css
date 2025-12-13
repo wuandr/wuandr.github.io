@@ -522,6 +522,17 @@ section > p {
   background: rgba(90, 224, 200, 0.04);
 }
 
+.archive-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.archive-meta {
+  color: var(--muted);
+  font-size: var(--fs-small);
+}
+
 .skip-link {
   position: absolute;
   left: 50%;

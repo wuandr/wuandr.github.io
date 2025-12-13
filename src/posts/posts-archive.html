@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Archive of projects by Andrew Wu across data, reliability, and developer tooling.">
+  <meta name="description" content="Archive of blog posts by Andrew Wu.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles.css">
-  <title>Projects Archive · Andrew Wu</title>
+  <title>Blog Archive · Andrew Wu</title>
 </head>
 <body class="post-page archive-page">
   <a class="skip-link" href="#content">Skip to content</a>
@@ -16,27 +16,31 @@
   <main class="post-shell archive-shell">
     <header class="post-header">
       <a class="inline-link" href="../index.html">← Back to portfolio</a>
-      <p class="eyebrow">Projects · Archive</p>
-      <h1>Project archive</h1>
-      <p class="post-meta">Selected builds spanning data pipelines, observability, and operational tooling.</p>
+      <p class="eyebrow">Blog · Archive</p>
+      <h1>All posts</h1>
+      <p class="post-meta">Notes on calm systems, reliability habits, and product delivery.</p>
     </header>
 
     <section id="content" class="archive-table">
-      <div class="table-wrapper" role="region" aria-label="Project archive table">
+      <div class="table-wrapper" role="region" aria-label="Post archive table">
         <table>
           <thead>
             <tr>
-              <th scope="col">Creation date</th>
+              <th scope="col">Created</th>
+              <th scope="col">Updated</th>
               <th scope="col">Title</th>
-              <th scope="col">Link to repo</th>
+              <th scope="col">Link</th>
             </tr>
           </thead>
-          <tbody>
-            <!-- Filled at build time from individual project pages -->
+          <tbody data-archive-body>
+            <tr>
+              <td colspan="4">Loading posts…</td>
+            </tr>
           </tbody>
         </table>
       </div>
     </section>
   </main>
+  <script type="module" src="./posts-archive.js"></script>
 </body>
 </html>

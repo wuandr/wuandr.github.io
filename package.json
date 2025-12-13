@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "tsc && node scripts/copy-static.js",
-    "copy:static": "node scripts/copy-static.js"
+    "start": "npm run build && node scripts/serve.js",
+    "serve": "node scripts/serve.js",
+    "build": "tsc && node scripts/build.js"
   },
   "devDependencies": {
     "typescript": "^5.3.3"

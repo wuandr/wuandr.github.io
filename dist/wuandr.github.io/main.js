@@ -1,4 +1,4 @@
-"use strict";
+import { isExternalHref } from './utils/links.js';
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const selectNavLinks = () => {
     const entries = Array.from(document.querySelectorAll('[data-section]')).map((link) => [
@@ -69,9 +69,122 @@ const setupNavClicks = () => {
         });
     });
 };
+const fetchArchive = async (path) => {
+    const response = await fetch(path, { cache: 'no-cache' });
+    if (!response.ok)
+        throw new Error(`Failed to load ${path}`);
+    const data = (await response.json());
+    return Array.isArray(data) ? data : [];
+};
+const placeholderImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='960' height='540'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23273344'/%3E%3Cstop offset='100%25' stop-color='%23354259'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='960' height='540' fill='url(%23g)'/%3E%3Cpath d='M180 360c120-80 200-120 320-80s140 160 280 80' fill='none' stroke='%23a6f1d8' stroke-width='12' stroke-linecap='round'/%3E%3Ccircle cx='260' cy='240' r='12' fill='%23a6f1d8'/%3E%3Ccircle cx='480' cy='260' r='12' fill='%23a6f1d8'/%3E%3Ccircle cx='700' cy='320' r='12' fill='%23a6f1d8'/%3E%3C/svg%3E";
+const renderProjects = async () => {
+    const container = document.querySelector('[data-projects-grid]');
+    if (!container)
+        return;
+    const maxItems = 4;
+    const renderEmpty = (message) => {
+        container.innerHTML = `<article class="card project"><div class="project-body"><p>${message}</p></div></article>`;
+    };
+    try {
+        const projects = await fetchArchive('projects/projects.json');
+        const recentProjects = projects.slice(0, maxItems);
+        if (!recentProjects.length) {
+            renderEmpty('No projects yet.');
+            return;
+        }
+        const formatProjectMeta = (project) => {
+            const created = project.createdDisplay || project.createdAt || project.date || 'TBD';
+            const updated = project.updatedDisplay || project.updatedAt;
+            const parts = [created];
+            if (project.status)
+                parts.push(project.status);
+            if (updated && updated !== created)
+                parts.push(`Updated ${updated}`);
+            return parts.filter(Boolean).join(' · ');
+        };
+        const renderTags = (project) => {
+            const tags = project.tags?.length ? project.tags : ['Project'];
+            return tags.map((tag) => `<span class="tag">${tag}</span>`).join('');
+        };
+        container.innerHTML = recentProjects
+            .map((project) => {
+            const href = project.repo || project.href || '#';
+            const externalAttrs = isExternalHref(href) ? ' target="_blank" rel="noreferrer"' : '';
+            return `
+        <article class="card project">
+          <div class="thumb">
+            <img loading="lazy" decoding="async" width="480" height="270" src="${placeholderImage}" alt="">
+          </div>
+          <div class="project-body">
+            <p class="eyebrow">${formatProjectMeta(project)}</p>
+            <h3><a href="${href}"${externalAttrs}>${project.title}</a></h3>
+            <p>${project.description || 'Project description coming soon.'}</p>
+            <div class="tags">
+              ${renderTags(project)}
+            </div>
+          </div>
+        </article>`;
+        })
+            .join('');
+    }
+    catch (err) {
+        console.error(err);
+        renderEmpty('Unable to load projects.');
+    }
+};
+const renderPosts = async () => {
+    const stack = document.querySelector('[data-blog-stack]');
+    if (!stack)
+        return;
+    const maxItems = 4;
+    const renderEmpty = (message) => {
+        stack.innerHTML = `<article class="card"><p>${message}</p></article>`;
+    };
+    try {
+        const posts = await fetchArchive('posts/posts.json');
+        const recentPosts = posts.slice(0, maxItems);
+        if (!recentPosts.length) {
+            renderEmpty('No posts yet.');
+            return;
+        }
+        const formatPostMeta = (post) => {
+            const created = post.createdDisplay || post.createdAt || post.date || 'TBD';
+            const updated = post.updatedDisplay || post.updatedAt;
+            const parts = [created];
+            if (updated && updated !== created)
+                parts.push(`Updated ${updated}`);
+            if (post.readTime)
+                parts.push(post.readTime);
+            return parts.filter(Boolean).join(' · ');
+        };
+        stack.innerHTML = recentPosts
+            .map((post) => {
+            const baseHref = post.href || '#';
+            const isExternal = isExternalHref(baseHref);
+            const isInternalPath = /^(\.|\/|#)/.test(baseHref);
+            const href = isExternal || isInternalPath ? baseHref : `posts/${baseHref}`;
+            const externalAttrs = isExternal ? ' target="_blank" rel="noreferrer"' : '';
+            return `
+        <article class="card">
+          <div class="meta">
+            <p class="period">${formatPostMeta(post)}</p>
+            <a class="company" href="${href}"${externalAttrs}>${post.title || 'Untitled'}</a>
+          </div>
+          <p>${post.description || 'Read the full post in the archive.'}</p>
+        </article>`;
+        })
+            .join('');
+    }
+    catch (err) {
+        console.error(err);
+        renderEmpty('Unable to load posts.');
+    }
+};
 const init = () => {
     setActiveNav(selectNavLinks(), 'about');
     setupScrollSpy();
     setupNavClicks();
+    renderProjects();
+    renderPosts();
 };
 window.addEventListener('DOMContentLoaded', init);

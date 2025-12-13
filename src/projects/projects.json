@@ -1,0 +1,24 @@
+[
+  {
+    "slug": "data-canvas",
+    "title": "Data Canvas",
+    "description": "Open-source toolkit for describing event-driven data flows with live diagrams and deployment checks.",
+    "tags": ["TypeScript", "React", "Node", "AWS", "Event-driven"],
+    "createdAt": "2024-01-15",
+    "updatedAt": "2024-05-01",
+    "status": "Live",
+    "repo": "https://github.com/wuandr/data-canvas",
+    "href": "https://github.com/wuandr/data-canvas"
+  },
+  {
+    "slug": "pulseboard",
+    "title": "Pulseboard",
+    "description": "Lightweight status and incident log that pairs public updates with webhooks, on-call schedules, and SLAs.",
+    "tags": ["TypeScript", "React", "Node", "PostgreSQL", "AWS"],
+    "createdAt": "2023-06-01",
+    "updatedAt": "2024-01-15",
+    "status": "Built 2023 — 2024",
+    "repo": "https://github.com/wuandr/pulseboard",
+    "href": "https://github.com/wuandr/pulseboard"
+  }
+]

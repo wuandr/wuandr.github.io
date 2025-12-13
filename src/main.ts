@@ -1,3 +1,5 @@
+import { isExternalHref } from './utils/links.js';
+
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 type SectionId = 'about' | 'experience' | 'projects' | 'blog';
@@ -144,20 +146,24 @@ const renderProjects = async () => {
 
     container.innerHTML = recentProjects
       .map(
-        (project) => `
+        (project) => {
+          const href = project.repo || project.href || '#';
+          const externalAttrs = isExternalHref(href) ? ' target="_blank" rel="noreferrer"' : '';
+          return `
         <article class="card project">
           <div class="thumb">
             <img loading="lazy" decoding="async" width="480" height="270" src="${placeholderImage}" alt="">
           </div>
           <div class="project-body">
             <p class="eyebrow">${formatProjectMeta(project)}</p>
-            <h3><a href="${project.repo || project.href || '#'}" target="_blank" rel="noreferrer">${project.title}</a></h3>
+            <h3><a href="${href}"${externalAttrs}>${project.title}</a></h3>
             <p>${project.description || 'Project description coming soon.'}</p>
             <div class="tags">
               ${renderTags(project)}
             </div>
           </div>
-        </article>`
+        </article>`;
+        }
       )
       .join('');
   } catch (err) {
@@ -195,14 +201,22 @@ const renderPosts = async () => {
 
     stack.innerHTML = recentPosts
       .map(
-        (post) => `
+        (post) => {
+          const baseHref = post.href || '#';
+          const isExternal = isExternalHref(baseHref);
+          const isInternalPath = /^(\.|\/|#)/.test(baseHref);
+          const href = isExternal || isInternalPath ? baseHref : `posts/${baseHref}`;
+          const externalAttrs = isExternal ? ' target="_blank" rel="noreferrer"' : '';
+
+          return `
         <article class="card">
           <div class="meta">
             <p class="period">${formatPostMeta(post)}</p>
-            <a class="company" href="posts/${post.href}" target="_blank" rel="noreferrer">${post.title || 'Untitled'}</a>
+            <a class="company" href="${href}"${externalAttrs}>${post.title || 'Untitled'}</a>
           </div>
           <p>${post.description || 'Read the full post in the archive.'}</p>
-        </article>`
+        </article>`;
+        }
       )
       .join('');
   } catch (err) {

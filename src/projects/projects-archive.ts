@@ -1,3 +1,4 @@
+import { isExternalHref } from '../utils/links.js';
 type ProjectEntry = {
   slug?: string;
   title?: string;
@@ -47,7 +48,10 @@ const renderProjectsArchive = async () => {
     };
     const renderLink = (project: ProjectEntry) => {
       const href = project.repo || project.href;
-      return href ? `<a class="inline-link" href="${href}" target="_blank" rel="noreferrer">Open</a>` : '—';
+      if (!href) return '—';
+
+      const externalAttrs = isExternalHref(href) ? ' target="_blank" rel="noreferrer"' : '';
+      return `<a class="inline-link" href="${href}"${externalAttrs}>Open</a>`;
     };
 
     tbody.innerHTML = projects
