@@ -39,3 +39,6 @@ Use the server for local testing so JSON fetches (`posts/posts.json`, `projects/
 
 ## Deploying
 Run `npm run build` and publish `dist/wuandr.github.io`. The included GitHub Pages workflow already uploads this folder.
+
+## See Also
+This design was based on and inspired by https://brittanychiang.com/
