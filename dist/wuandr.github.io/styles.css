@@ -1,12 +1,13 @@
 /* Base tokens */
 :root {
-  --bg: #0c1107;
-  --surface: #10150b;
-  --text: #f6faec;
+  --bg: #272822;
+  --surface: #1f201c;
+  --text: #f8f8f2;
   --text-strong: #ffffff;
-  --muted: #9fa889;
-  --accent: #7a8f34;
-  --border: #1b2312;
+  --muted: #a6a7a1;
+  --accent: #f92672;
+  --accent-2: #a6e22e;
+  --border: #3a3b32;
 
   --font-sans: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, sans-serif;
 
@@ -33,13 +34,14 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    --bg: #f6f8ed;
+    --bg: #fdfaf4;
     --surface: #ffffff;
-    --text: #15200a;
-    --text-strong: #0f1708;
-    --muted: #4e5738;
-    --accent: #6e882f;
-    --border: #dbe2c7;
+    --text: #2c2d27;
+    --text-strong: #171812;
+    --muted: #6f7068;
+    --accent: #d7366c;
+    --accent-2: #7bbf1a;
+    --border: #e6decc;
   }
 }
 
@@ -66,8 +68,8 @@ body {
   font-size: var(--fs-body);
   line-height: var(--lh-body);
   color: var(--text);
-  background: radial-gradient(circle at 20% 20%, rgba(122, 143, 52, 0.07), transparent 30%),
-    radial-gradient(circle at 80% 10%, rgba(110, 136, 47, 0.05), transparent 32%),
+  background: radial-gradient(circle at 20% 20%, rgba(249, 38, 114, 0.08), transparent 30%),
+    radial-gradient(circle at 80% 10%, rgba(166, 226, 46, 0.06), transparent 32%),
     var(--bg);
   padding: var(--space-5) var(--space-5) var(--space-6);
 }
@@ -220,7 +222,7 @@ ul {
 
 .primary-nav a:hover,
 .primary-nav a:focus-visible {
-  color: var(--accent);
+  color: var(--accent-2);
 }
 
 .primary-nav a[data-active="true"],
@@ -325,7 +327,7 @@ section > p {
 }
 
 .card:hover {
-  border-color: rgba(122, 143, 52, 0.45);
+  border-color: rgba(249, 38, 114, 0.35);
   transform: translateY(-2px);
   box-shadow: 0 16px 50px rgba(0, 0, 0, 0.25);
 }
@@ -345,7 +347,7 @@ section > p {
 }
 
 .company {
-  color: var(--accent);
+  color: var(--accent-2);
   font-weight: 700;
 }
 
@@ -361,7 +363,7 @@ section > p {
   align-items: center;
   padding: 0.3rem 0.65rem;
   border-radius: 999px;
-  background: rgba(122, 143, 52, 0.12);
+  background: rgba(166, 226, 46, 0.12);
   color: var(--text);
   border: 1px solid var(--border);
   font-size: 0.9rem;
@@ -405,7 +407,7 @@ section > p {
 
 .project .thumb {
   overflow: hidden;
-  background: #0f1409;
+  background: #1d1e19;
 }
 
 .project .thumb img {
@@ -519,7 +521,7 @@ section > p {
 }
 
 .archive-table tbody tr:hover td {
-  background: rgba(122, 143, 52, 0.08);
+  background: rgba(166, 226, 46, 0.08);
 }
 
 .archive-title {
@@ -539,7 +541,7 @@ section > p {
   transform: translate(-50%, -200%);
   padding: 0.75rem 1rem;
   background: var(--accent);
-  color: #0d1507;
+  color: #171812;
   border-radius: var(--radius);
   font-weight: 700;
   transition: transform var(--dur-fast) var(--ease);
