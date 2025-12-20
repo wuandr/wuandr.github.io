@@ -32,8 +32,8 @@ Use the server for local testing so JSON fetches (`posts/posts.json`, `projects/
 
 ## Editing content
 - Update hero/about/experience copy in `src/index.html`.
-- Posts: add Markdown files in `src/posts/content/` with optional frontmatter (`title`, `description`, `createdAt`, `updatedAt`, `readTime`, `slug`). The build script renders each post to HTML and populates the archive JSON automatically.
-- Projects: edit `src/projects/projects.json` and add an object per project (`slug`, `title`, `description`, `createdAt`, optional `updatedAt`, `status`, `repo`/`href`, `tags`). The archive table and homepage cards pull directly from this data file; standalone HTML detail pages are no longer copied during the build.
+- Posts: start from the template in `CONTENT_GUIDE.md` and add Markdown files to `src/posts/content/` (the directory ships empty by default). The build script renders each post to HTML and populates the archive JSON automatically.
+- Projects: the shipped `src/projects/projects.json` is empty; add entries using the template in `CONTENT_GUIDE.md`. The archive table and homepage cards pull directly from this data file; standalone HTML detail pages are no longer copied during the build.
 - Replace the résumé by updating `src/assets/Andrew_Wu_resume_20251126.pdf` (or adjust the filename in `src/index.html` and `scripts/build.js` if renamed).
 - Tweak styles in `src/styles.css`; adjust client behavior in `src/main.ts` and rebuild.
 

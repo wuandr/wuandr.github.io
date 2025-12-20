@@ -1,12 +1,12 @@
 /* Base tokens */
 :root {
-  --bg: #0e1118;
-  --surface: #151a23;
-  --text: #e8edf5;
+  --bg: #0c1107;
+  --surface: #10150b;
+  --text: #f6faec;
   --text-strong: #ffffff;
-  --muted: #9ba3b5;
-  --accent: #5ae0c8;
-  --border: #1f2632;
+  --muted: #9fa889;
+  --accent: #7a8f34;
+  --border: #1b2312;
 
   --font-sans: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, sans-serif;
 
@@ -15,7 +15,7 @@
   --fs-h3: 1.1rem;
   --fs-body: 1rem;
   --fs-small: 0.95rem;
-  --lh-body: 1.7;
+  --lh-body: 1.75;
 
   --radius: 12px;
 
@@ -33,13 +33,13 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    --bg: #f7f9fb;
+    --bg: #f6f8ed;
     --surface: #ffffff;
-    --text: #111827;
-    --text-strong: #0b1222;
-    --muted: #4b5563;
-    --accent: #0ea5e9;
-    --border: #e5e7eb;
+    --text: #15200a;
+    --text-strong: #0f1708;
+    --muted: #4e5738;
+    --accent: #6e882f;
+    --border: #dbe2c7;
   }
 }
 
@@ -66,8 +66,8 @@ body {
   font-size: var(--fs-body);
   line-height: var(--lh-body);
   color: var(--text);
-  background: radial-gradient(circle at 20% 20%, rgba(90, 224, 200, 0.07), transparent 30%),
-    radial-gradient(circle at 80% 10%, rgba(14, 165, 233, 0.06), transparent 32%),
+  background: radial-gradient(circle at 20% 20%, rgba(122, 143, 52, 0.07), transparent 30%),
+    radial-gradient(circle at 80% 10%, rgba(110, 136, 47, 0.05), transparent 32%),
     var(--bg);
   padding: var(--space-5) var(--space-5) var(--space-6);
 }
@@ -325,7 +325,7 @@ section > p {
 }
 
 .card:hover {
-  border-color: rgba(90, 224, 200, 0.4);
+  border-color: rgba(122, 143, 52, 0.45);
   transform: translateY(-2px);
   box-shadow: 0 16px 50px rgba(0, 0, 0, 0.25);
 }
@@ -361,7 +361,7 @@ section > p {
   align-items: center;
   padding: 0.3rem 0.65rem;
   border-radius: 999px;
-  background: rgba(90, 224, 200, 0.08);
+  background: rgba(122, 143, 52, 0.12);
   color: var(--text);
   border: 1px solid var(--border);
   font-size: 0.9rem;
@@ -405,7 +405,7 @@ section > p {
 
 .project .thumb {
   overflow: hidden;
-  background: #0f1520;
+  background: #0f1409;
 }
 
 .project .thumb img {
@@ -519,7 +519,7 @@ section > p {
 }
 
 .archive-table tbody tr:hover td {
-  background: rgba(90, 224, 200, 0.04);
+  background: rgba(122, 143, 52, 0.08);
 }
 
 .archive-title {
@@ -539,7 +539,7 @@ section > p {
   transform: translate(-50%, -200%);
   padding: 0.75rem 1rem;
   background: var(--accent);
-  color: #0b1222;
+  color: #0d1507;
   border-radius: var(--radius);
   font-weight: 700;
   transition: transform var(--dur-fast) var(--ease);

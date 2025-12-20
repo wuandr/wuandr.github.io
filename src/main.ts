@@ -117,16 +117,17 @@ const renderProjects = async () => {
   if (!container) return;
 
   const maxItems = 4;
+  const emptyMessage = 'No projects yet. Check back soon.';
 
-  const renderEmpty = (message: string) => {
-    container.innerHTML = `<article class="card project"><div class="project-body"><p>${message}</p></div></article>`;
+  const renderEmpty = () => {
+    container.innerHTML = `<article class="card project"><div class="project-body"><p>${emptyMessage}</p></div></article>`;
   };
 
   try {
     const projects = await fetchArchive('projects/projects.json');
     const recentProjects = projects.slice(0, maxItems);
     if (!recentProjects.length) {
-      renderEmpty('No projects yet.');
+      renderEmpty();
       return;
     }
 
@@ -168,7 +169,7 @@ const renderProjects = async () => {
       .join('');
   } catch (err) {
     console.error(err);
-    renderEmpty('Unable to load projects.');
+    renderEmpty();
   }
 };
 
@@ -177,16 +178,17 @@ const renderPosts = async () => {
   if (!stack) return;
 
   const maxItems = 4;
+  const emptyMessage = 'No posts yet. Check back soon.';
 
-  const renderEmpty = (message: string) => {
-    stack.innerHTML = `<article class="card"><p>${message}</p></article>`;
+  const renderEmpty = () => {
+    stack.innerHTML = `<article class="card"><p>${emptyMessage}</p></article>`;
   };
 
   try {
     const posts = await fetchArchive('posts/posts.json');
     const recentPosts = posts.slice(0, maxItems);
     if (!recentPosts.length) {
-      renderEmpty('No posts yet.');
+      renderEmpty();
       return;
     }
 
@@ -221,7 +223,7 @@ const renderPosts = async () => {
       .join('');
   } catch (err) {
     console.error(err);
-    renderEmpty('Unable to load posts.');
+    renderEmpty();
   }
 };
 
