@@ -222,7 +222,7 @@ ul {
 
 .primary-nav a:hover,
 .primary-nav a:focus-visible {
-  color: var(--accent-2);
+  color: var(--accent);
 }
 
 .primary-nav a[data-active="true"],
@@ -231,7 +231,7 @@ ul {
 }
 
 .primary-nav a[data-active="true"]::before {
-  background: var(--accent);
+  background: var(--accent-2);
   transform: scale(1);
 }
 
