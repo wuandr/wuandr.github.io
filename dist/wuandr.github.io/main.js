@@ -116,7 +116,7 @@ const renderProjects = async () => {
             return `
         <article class="card project">
           <div class="thumb">
-            <img loading="lazy" decoding="async" width="480" height="270" src="${thumbnail}" alt="" onerror="this.onerror=null;this.src='${fallbackImage}';">
+            <img loading="lazy" decoding="async" width="480" height="270" src="${thumbnail}" data-fallback="${fallbackImage}" alt="">
           </div>
           <div class="project-body">
             <p class="eyebrow">${formatProjectMeta(project)}</p>
@@ -129,6 +129,16 @@ const renderProjects = async () => {
         </article>`;
         })
             .join('');
+        container.querySelectorAll('img[data-fallback]').forEach((image) => {
+            const fallback = image.dataset.fallback;
+            if (!fallback)
+                return;
+            image.addEventListener('error', () => {
+                if (image.src === fallback)
+                    return;
+                image.src = fallback;
+            });
+        });
     }
     catch (err) {
         console.error(err);

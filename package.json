@@ -5,7 +5,8 @@
   "scripts": {
     "start": "npm run build && node scripts/serve.js",
     "serve": "node scripts/serve.js",
-    "build": "tsc && node scripts/build.js"
+    "build": "tsc && node scripts/build.js",
+    "deploy": "gh workflow run static.yml"
   },
   "devDependencies": {
     "typescript": "^5.3.3"
