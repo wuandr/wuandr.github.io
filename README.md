@@ -88,4 +88,4 @@ For local builds, you can optionally provide a GitHub token to avoid rate limits
 Run `npm run build` and publish `dist/wuandr.github.io`. The included GitHub Pages workflow already uploads this folder.
 
 ## See Also
-This design was based on and inspired by https://brittanychiang.com/
+This design was largely inspired by https://brittanychiang.com/

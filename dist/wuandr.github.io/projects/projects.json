@@ -2,11 +2,11 @@
   {
     "slug": "cam_rng",
     "title": "Cam RNG",
-    "description": "No description provided",
+    "description": "A minimal Android app for RNG stuff such as coin flips and more",
     "createdAt": "2026-01-11",
-    "updatedAt": "2026-01-12",
+    "updatedAt": "2026-01-22",
     "createdDisplay": "Jan 11, 2026",
-    "updatedDisplay": "Jan 12, 2026",
+    "updatedDisplay": "Jan 22, 2026",
     "date": "Jan 11, 2026",
     "href": "https://github.com/wuandr/Cam_RNG",
     "repo": "https://github.com/wuandr/Cam_RNG",
@@ -14,6 +14,8 @@
     "tags": [
       "portfolio",
       "showcase"
-    ]
+    ],
+    "thumbnail": "https://opengraph.githubassets.com/1/wuandr/Cam_RNG",
+    "thumbnailFallback": "https://avatars.githubusercontent.com/u/90425163?v=4"
   }
 ]

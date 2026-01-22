@@ -17,6 +17,8 @@ type ArchiveEntry = {
   slug?: string;
   status?: string;
   tags?: string[];
+  thumbnail?: string;
+  thumbnailFallback?: string;
 };
 
 const selectNavLinks = (): Map<SectionId, HTMLAnchorElement> => {
@@ -150,10 +152,12 @@ const renderProjects = async () => {
         (project) => {
           const href = project.repo || project.href || '#';
           const externalAttrs = isExternalHref(href) ? ' target="_blank" rel="noreferrer"' : '';
+          const thumbnail = project.thumbnail || placeholderImage;
+          const fallbackImage = project.thumbnailFallback || placeholderImage;
           return `
         <article class="card project">
           <div class="thumb">
-            <img loading="lazy" decoding="async" width="480" height="270" src="${placeholderImage}" alt="">
+            <img loading="lazy" decoding="async" width="480" height="270" src="${thumbnail}" alt="" onerror="this.onerror=null;this.src='${fallbackImage}';">
           </div>
           <div class="project-body">
             <p class="eyebrow">${formatProjectMeta(project)}</p>

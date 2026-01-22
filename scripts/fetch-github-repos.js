@@ -244,7 +244,9 @@ function mapRepoToProject(repo, topics) {
     href: href,
     repo: repo.html_url,
     status: status,
-    tags: topics.length > 0 ? topics : ['project'] // Default tag if no topics
+    tags: topics.length > 0 ? topics : ['project'], // Default tag if no topics
+    thumbnail: getRepoThumbnail(repo),
+    thumbnailFallback: getRepoThumbnailFallback(repo)
   };
 }
 
@@ -279,6 +281,36 @@ function formatTitle(name) {
     .split(/[-_]/)
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
+}
+
+/**
+ * Choose a thumbnail image for the repository.
+ * @param {Object} repo - GitHub repository object
+ * @returns {string} URL to thumbnail image
+ */
+function getRepoThumbnail(repo) {
+  if (repo.open_graph_image_url) {
+    return repo.open_graph_image_url;
+  }
+
+  if (repo.owner && repo.owner.login) {
+    return `https://opengraph.githubassets.com/1/${repo.owner.login}/${repo.name}`;
+  }
+
+  return '';
+}
+
+/**
+ * Choose a thumbnail fallback image for the repository.
+ * @param {Object} repo - GitHub repository object
+ * @returns {string} URL to fallback image
+ */
+function getRepoThumbnailFallback(repo) {
+  if (repo.owner && repo.owner.avatar_url) {
+    return repo.owner.avatar_url;
+  }
+
+  return '';
 }
 
 /**

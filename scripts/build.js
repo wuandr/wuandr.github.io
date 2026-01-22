@@ -350,6 +350,8 @@ const buildProjectRows = async () => {
         repo: project.repo || '',
         status: project.status || '',
         tags: Array.isArray(project.tags) ? project.tags : [],
+        thumbnail: project.thumbnail || '',
+        thumbnailFallback: project.thumbnailFallback || '',
       };
     })
     .sort((a, b) => {
