@@ -2,6 +2,7 @@
 // markdown posts to HTML, and emits JSON manifests for posts and projects.
 const fs = require('fs');
 const path = require('path');
+const { fetchGitHubProjects } = require('./fetch-github-repos');
 
 const root = path.join(__dirname, '..');
 const srcDir = path.join(root, 'src');
@@ -296,8 +297,29 @@ const buildPostPages = () => {
 };
 
 // Read projects.json and normalize fields for the archive manifest.
-const buildProjectRows = () => {
-  const projects = readJsonArray(projectsDataPath);
+// Also fetches projects from GitHub API and merges them.
+const buildProjectRows = async () => {
+  const manualProjects = readJsonArray(projectsDataPath);
+
+  // Try to fetch GitHub projects
+  let githubProjects = [];
+  try {
+    const configPath = path.join(__dirname, '..', 'github-projects.config.js');
+    if (fs.existsSync(configPath)) {
+      const config = require(configPath);
+      console.log('\n🔍 Fetching projects from GitHub...');
+      githubProjects = await fetchGitHubProjects(config);
+    } else {
+      console.log('⚠️  No github-projects.config.js found, skipping GitHub integration');
+    }
+  } catch (error) {
+    console.warn('⚠️  Failed to fetch GitHub projects:', error.message);
+    console.warn('Continuing with manual projects only...');
+  }
+
+  // Merge GitHub and manual projects
+  // Manual projects take precedence (override GitHub data by slug)
+  const mergedProjects = mergeProjects(githubProjects, manualProjects);
 
   const toSlug = (entry) => {
     if (entry.slug) return entry.slug;
@@ -307,7 +329,7 @@ const buildProjectRows = () => {
     return '';
   };
 
-  return projects
+  return mergedProjects
     .map((project) => {
       const slug = toSlug(project);
       const createdAt = coerceIsoDate(project.createdAt || project.date, '');
@@ -335,6 +357,36 @@ const buildProjectRows = () => {
       const bTime = new Date(b.createdAt || 0).getTime();
       return bTime - aTime;
     });
+};
+
+// Merge GitHub projects with manual projects
+// Manual projects override GitHub projects with the same slug
+const mergeProjects = (githubProjects, manualProjects) => {
+  const projectMap = new Map();
+
+  // Add GitHub projects first
+  for (const project of githubProjects) {
+    const slug = project.slug || project.title?.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    if (slug) {
+      projectMap.set(slug, project);
+    }
+  }
+
+  // Add/override with manual projects
+  for (const project of manualProjects) {
+    const slug = project.slug || project.title?.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    if (slug) {
+      // If project exists, merge with manual data taking precedence
+      if (projectMap.has(slug)) {
+        const githubProject = projectMap.get(slug);
+        projectMap.set(slug, { ...githubProject, ...project });
+      } else {
+        projectMap.set(slug, project);
+      }
+    }
+  }
+
+  return Array.from(projectMap.values());
 };
 
 // Copy static assets that do not require any processing.
@@ -377,9 +429,17 @@ const pruneDistArtifacts = () => {
 };
 
 // Build flow: clean, render posts/projects, then emit manifests.
-pruneDistArtifacts();
-cleanPostOutput();
-const postManifest = buildPostPages();
-const projectManifest = buildProjectRows();
-writeJson(path.join(distDir, 'posts', 'posts.json'), postManifest);
-writeJson(path.join(distDir, 'projects', 'projects.json'), projectManifest);
+(async () => {
+  try {
+    pruneDistArtifacts();
+    cleanPostOutput();
+    const postManifest = buildPostPages();
+    const projectManifest = await buildProjectRows();
+    writeJson(path.join(distDir, 'posts', 'posts.json'), postManifest);
+    writeJson(path.join(distDir, 'projects', 'projects.json'), projectManifest);
+    console.log('\n✅ Build completed successfully!');
+  } catch (error) {
+    console.error('\n❌ Build failed:', error);
+    process.exit(1);
+  }
+})();

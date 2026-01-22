@@ -1,1 +1,7 @@
 node_modules/
+
+# Environment variables (local development)
+.env
+
+# GitHub API cache
+scripts/.github-cache.json
