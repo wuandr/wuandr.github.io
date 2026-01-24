@@ -2,7 +2,7 @@
   {
     "slug": "cam_rng",
     "title": "Cam RNG",
-    "description": "A minimal Android app for RNG stuff such as coin flips and more",
+    "description": "A minimal Android app for stuff such as coin flips and more that uses a photo for the RNG à la Lavarand",
     "createdAt": "2026-01-11",
     "updatedAt": "2026-01-22",
     "createdDisplay": "Jan 11, 2026",
