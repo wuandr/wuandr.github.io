@@ -1,5 +1,24 @@
 [
   {
+    "slug": "qr_gen",
+    "title": "QR Gen",
+    "description": "Simple QR code gen that supports custom icons",
+    "createdAt": "2026-03-03",
+    "updatedAt": "2026-03-03",
+    "createdDisplay": "Mar 3, 2026",
+    "updatedDisplay": "Mar 3, 2026",
+    "date": "Mar 3, 2026",
+    "href": "https://github.com/wuandr/QR_Gen",
+    "repo": "https://github.com/wuandr/QR_Gen",
+    "status": "Active",
+    "tags": [
+      "portfolio",
+      "showcase"
+    ],
+    "thumbnail": "https://opengraph.githubassets.com/1/wuandr/QR_Gen",
+    "thumbnailFallback": "https://avatars.githubusercontent.com/u/90425163?v=4"
+  },
+  {
     "slug": "cam_rng",
     "title": "Cam RNG",
     "description": "A minimal Android app for stuff such as coin flips and more that uses a photo for the RNG à la Lavarand",
