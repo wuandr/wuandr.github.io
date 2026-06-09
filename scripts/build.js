@@ -206,6 +206,7 @@ const renderPostTemplate = ({ title, description, createdAt, updatedAt, readTime
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){try{var p=localStorage.getItem('theme-preference');if(p==='light'||p==='dark')document.documentElement.dataset.theme=p;}catch(e){}})();</script>
   <meta name="description" content="${escapeAttribute(description)}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -218,10 +219,17 @@ const renderPostTemplate = ({ title, description, createdAt, updatedAt, readTime
 
   <main class="post-shell">
     <header class="post-header">
-      <div class="post-links">
-        <a class="inline-link" href="./posts-archive.html">Blog archive</a>
-        <span aria-hidden="true">·</span>
-        <a class="inline-link" href="../index.html">Portfolio home</a>
+      <div class="post-topbar">
+        <div class="post-links">
+          <a class="inline-link" href="./posts-archive.html">Blog archive</a>
+          <span aria-hidden="true">·</span>
+          <a class="inline-link" href="../index.html">Portfolio home</a>
+        </div>
+        <button class="theme-cycle" data-theme-cycle type="button" aria-label="Theme">
+          <svg data-icon="system" viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false"><path d="M3 4h18a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1h-7v2h3v2H7v-2h3v-2H3a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm1 2v9h16V6H4z"/></svg>
+          <svg data-icon="light" viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm0 16a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1zM3 11h2a1 1 0 1 1 0 2H3a1 1 0 1 1 0-2zm16 0h2a1 1 0 1 1 0 2h-2a1 1 0 1 1 0-2zM5.6 4.2 7 5.6A1 1 0 0 1 5.6 7L4.2 5.6a1 1 0 0 1 1.4-1.4zm12.8 12.8 1.4 1.4a1 1 0 0 1-1.4 1.4L17 18.4a1 1 0 0 1 1.4-1.4zM18.4 4.2a1 1 0 0 1 1.4 1.4L18.4 7A1 1 0 0 1 17 5.6l1.4-1.4zM5.6 17 7 18.4a1 1 0 0 1-1.4 1.4L4.2 18.4A1 1 0 0 1 5.6 17z"/></svg>
+          <svg data-icon="dark" viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
       </div>
       <p class="eyebrow">Blog · Post</p>
       <p class="post-meta">${metaLine}</p>
@@ -232,6 +240,7 @@ const renderPostTemplate = ({ title, description, createdAt, updatedAt, readTime
 ${contentHtml}
     </article>
   </main>
+  <script type="module" src="../theme.js"></script>
 </body>
 </html>`;
 };
@@ -392,7 +401,7 @@ const mergeProjects = (githubProjects, manualProjects) => {
 };
 
 // Copy static assets that do not require any processing.
-['index.html', 'styles.css', 'color-theme.html'].forEach((file) => {
+['index.html', 'styles.css', 'color-theme.html', 'extended-palette.html'].forEach((file) => {
   copyFile(path.join(srcDir, file), path.join(distDir, file));
 });
 

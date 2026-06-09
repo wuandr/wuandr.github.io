@@ -1,15 +1,20 @@
-/* Base tokens */
+/* Base tokens.
+   Theming: light is the :root default; dark applies via [data-theme="dark"] (manual)
+   or via prefers-color-scheme when no data-theme is set (system / no-JS). The two dark
+   blocks below must be kept in sync. Color values come from the canonical extended
+   palette (see extended-palette.html). */
 :root {
-  --bg: #0E1311;
-  --surface: #161D19;
-  --text: #E6E8E5;
-  --text-strong: #FFFFFF;
-  --muted: #9AA39D;
-  --accent: #3CA578;    /* lightened core-green */
-  --accent-2: #E0B84A;  /* lightened core-gold  */
-  --link: #6FA0D8;      /* lightened core-blue  */
-  --border: #2A322D;
-  --shadow: rgba(0, 0, 0, 0.5);
+  /* LIGHT color tokens */
+  --bg: #FCFBF6;
+  --surface: #F3EEE1;
+  --text: #221E14;
+  --text-strong: #221E14;
+  --muted: #4A4336;
+  --accent: #166A48;    /* core-green   */
+  --accent-2: #C9971A;  /* core-gold    */
+  --link: #1C4E87;      /* core-blue    */
+  --border: #DAD0BC;
+  --shadow: rgba(34, 30, 20, 0.12);
 
   --font-sans: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, sans-serif;
 
@@ -34,18 +39,34 @@
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg: #F9FAFB;
-    --surface: #FFFFFF;
-    --text: #111827;
-    --text-strong: #111827;
-    --muted: #4B5563;
-    --accent: #1A6045;    /* core-green */
-    --accent-2: #C9971A;  /* core-gold  */
-    --link: #1C4E87;      /* core-blue  */
-    --border: #D1D5DB;
-    --shadow: rgba(17, 24, 39, 0.12);
+/* DARK color tokens — explicit override (manual toggle). */
+:root[data-theme="dark"] {
+  --bg: #211D13;
+  --surface: #2B2618;
+  --text: #F6F1E3;
+  --text-strong: #F6F1E3;
+  --muted: #B2A98E;
+  --accent: #45CB85;    /* core-green   */
+  --accent-2: #F7B61F;  /* core-gold    */
+  --link: #54ACEC;      /* core-blue    */
+  --border: #423A28;
+  --shadow: rgba(0, 0, 0, 0.5);
+}
+
+/* DARK color tokens — system preference when no manual choice is set (also no-JS).
+   Keep these values identical to :root[data-theme="dark"] above. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg: #211D13;
+    --surface: #2B2618;
+    --text: #F6F1E3;
+    --text-strong: #F6F1E3;
+    --muted: #B2A98E;
+    --accent: #45CB85;
+    --accent-2: #F7B61F;
+    --link: #54ACEC;
+    --border: #423A28;
+    --shadow: rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -276,6 +297,55 @@ ul {
 .social a:hover svg,
 .social a:focus-visible svg {
   fill: var(--accent);
+}
+
+/* Three-way theme toggle (single cycling button: system → light → dark). */
+.theme-cycle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+
+.theme-cycle:hover,
+.theme-cycle:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.theme-cycle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.theme-cycle svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.theme-cycle [data-icon] { display: none; }
+.theme-cycle:not([data-pref]) [data-icon="system"] { display: block; }
+.theme-cycle[data-pref="system"] [data-icon="system"] { display: block; }
+.theme-cycle[data-pref="light"] [data-icon="light"] { display: block; }
+.theme-cycle[data-pref="dark"] [data-icon="dark"] { display: block; }
+
+/* Header row pairing the back-link with the theme toggle on post/archive pages. */
+.post-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-wrap: wrap;
 }
 
 .content {
@@ -545,7 +615,7 @@ section > p {
   transform: translate(-50%, -200%);
   padding: 0.75rem 1rem;
   background: var(--accent);
-  color: #FFFFFF;
+  color: var(--bg);
   border-radius: var(--radius);
   font-weight: 700;
   transition: transform var(--dur-fast) var(--ease);
