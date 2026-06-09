@@ -143,6 +143,11 @@ h2 {
   letter-spacing: -0.01em;
 }
 
+/* Section headings carry the primary identity color so green leads at rest. */
+.content h2 {
+  color: var(--accent);
+}
+
 h3 {
   font-size: var(--fs-h3);
   letter-spacing: -0.01em;
@@ -252,11 +257,11 @@ ul {
 
 .primary-nav a[data-active="true"],
 .primary-nav a[aria-current="page"] {
-  color: var(--text-strong);
+  color: var(--accent);
 }
 
 .primary-nav a[data-active="true"]::before {
-  background: var(--accent-2);
+  background: var(--accent);
   transform: scale(1);
 }
 
@@ -437,7 +442,7 @@ section > p {
   align-items: center;
   padding: 0.3rem 0.65rem;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--accent-2) 14%, transparent);
+  background: color-mix(in srgb, var(--text) 6%, transparent);
   color: var(--text);
   border: 1px solid var(--border);
   font-size: 0.9rem;
