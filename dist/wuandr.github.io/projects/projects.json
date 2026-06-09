@@ -1,12 +1,31 @@
 [
   {
+    "slug": "track-task-shift",
+    "title": "Track Task Shift",
+    "description": "Track tasks done in a clock-in and clock-out shift",
+    "createdAt": "2026-05-26",
+    "updatedAt": "2026-06-06",
+    "createdDisplay": "May 26, 2026",
+    "updatedDisplay": "Jun 6, 2026",
+    "date": "May 26, 2026",
+    "href": "https://github.com/wuandr/Track-Task-Shift",
+    "repo": "https://github.com/wuandr/Track-Task-Shift",
+    "status": "Active",
+    "tags": [
+      "portfolio",
+      "showcase"
+    ],
+    "thumbnail": "https://opengraph.githubassets.com/1/wuandr/Track-Task-Shift",
+    "thumbnailFallback": "https://avatars.githubusercontent.com/u/90425163?v=4"
+  },
+  {
     "slug": "qr_gen",
     "title": "QR Gen",
     "description": "Simple QR code gen that supports custom icons",
     "createdAt": "2026-03-03",
-    "updatedAt": "2026-03-03",
+    "updatedAt": "2026-04-06",
     "createdDisplay": "Mar 3, 2026",
-    "updatedDisplay": "Mar 3, 2026",
+    "updatedDisplay": "Apr 6, 2026",
     "date": "Mar 3, 2026",
     "href": "https://github.com/wuandr/QR_Gen",
     "repo": "https://github.com/wuandr/QR_Gen",

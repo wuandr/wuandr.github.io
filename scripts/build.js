@@ -392,7 +392,7 @@ const mergeProjects = (githubProjects, manualProjects) => {
 };
 
 // Copy static assets that do not require any processing.
-['index.html', 'styles.css'].forEach((file) => {
+['index.html', 'styles.css', 'color-theme.html'].forEach((file) => {
   copyFile(path.join(srcDir, file), path.join(distDir, file));
 });
 
